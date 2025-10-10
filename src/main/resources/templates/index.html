@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8" /><title>Shreeeyan Shopping Mart</title></head>
+<body>
+<h1>Shreeeyan Shopping Mart</h1>
+<p><a href="/user/register">Register</a> | <a href="/user/checkout">Checkout</a></p>
+<h2>Products</h2>
+<ul>
+    <li th:each="p : ${products}">
+        <b th:text="${p.name}"></b> - <span th:text="${p.category}"></span> - ₹<span th:text="${p.price}"></span>
+    </li>
+</ul>
+</body>
+</html>

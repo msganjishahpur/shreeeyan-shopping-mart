@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"/><title>Checkout</title></head>
+<body>
+<h1>Checkout</h1>
+<form method="post" action="/user/checkout">
+    <label>Phone (optional, for member discount): <input type="text" name="phone"></label>
+    <h3>Products</h3>
+    <div th:each="p : ${products}">
+        <div>
+            <span th:text="${p.name}"></span> - ₹<span th:text="${p.price}"></span>
+            Qty: <input type="number" min="0" th:attr="name=${'product_' + ${p.id}}" value="0" />
+        </div>
+    </div>
+    <button type="submit">Calculate</button>
+</form>
+
+<div th:if="${bill}">
+    <h2>Bill</h2>
+    <p>Subtotal: ₹<span th:text="${bill['subtotal']}"></span></p>
+    <p>Discount: ₹<span th:text="${bill['discount']}"></span></p>
+    <p><strong>Total: ₹<span th:text="${bill['finalTotal']}"></span></strong></p>
+</div>
+
+<p><a href="/">Home</a></p>
+</body>
+</html>
